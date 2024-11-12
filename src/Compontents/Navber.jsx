@@ -4,23 +4,28 @@ import { AuthContext } from "../Providers/AuthProviders";
 
 const Navber = () => {
 
-    const {user,signOutUser } =useContext(AuthContext);
+    const { user, signOutUser } = useContext(AuthContext);
     console.log(user)
 
-    const hendleSignOut =() =>{
+    const hendleSignOut = () => {
         signOutUser()
-        .then(() =>{
-            console.log('sing out successFully')
-        })
-        .catch(error =>{
-            console.log("ERROR:",error.message)
-        })
+            .then(() => {
+                console.log('sing out successFully')
+            })
+            .catch(error => {
+                console.log("ERROR:", error.message)
+            })
     }
 
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/login'>login</NavLink></li>
         <li><NavLink to='/register'>reginster</NavLink></li>
+        {
+            user && <>
+                <li><NavLink to='/orders'>Orders</NavLink></li>
+            </>
+        }
 
     </>
 
@@ -59,10 +64,10 @@ const Navber = () => {
             <div className="navbar-end">
                 {
                     user ?
-                    <>
-                    <span>{user?.email}</span>
-                    <a onClick={hendleSignOut} className="btn">sign Out</a>
-                    </>  : <Link to='/login'>Login</Link>
+                        <>
+                            <span>{user?.email}</span>
+                            <a onClick={hendleSignOut} className="btn">sign Out</a>
+                        </> : <Link to='/login'>Login</Link>
                 }
             </div>
         </div>
