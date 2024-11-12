@@ -8,11 +8,16 @@ export const AuthContext = createContext(null)
 
 const AuthProviders = ({ children }) => {
 
-    const authInfo = {
-        name: 'Tanzid anan'
-    }
+   
     const createUser =(email,password) =>{
         return createUserWithEmailAndPassword(auth,email,password)
+    }
+
+    
+
+    const authInfo = {
+        name: 'Tanzid anan',
+        createUser
     }
 
 
