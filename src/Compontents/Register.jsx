@@ -5,7 +5,6 @@ import { AuthContext } from "../Providers/AuthProviders";
 const Register = () => {
 
     const { createUser } = useContext(AuthContext);
-    console.log(createUser)
 
     const hendleRegister = e => {
         e.preventDefault();
