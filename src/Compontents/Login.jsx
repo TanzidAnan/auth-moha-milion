@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProviders";
 
 const Login = () => {
-
+    const navigat =useNavigate()
     const {signInUser} =useContext(AuthContext)
 
     const hendleLogin = e => {
@@ -13,7 +13,9 @@ const Login = () => {
 
         signInUser(email,password)
         .then(result =>{
-            console.log(result.user)
+            console.log(result.user);
+            e.target.reset();
+            navigat('/')
         })
         .catch(error =>{
             console.log(error.message)
