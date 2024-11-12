@@ -37,7 +37,7 @@ const Login = () => {
                                 <button className="btn btn-primary">Login</button>
                             </div>
                         </form>
-                        <p>
+                        <p className="ml-4 mb-4">
                             New to this Website ? Plice <Link to='/register'>Register</Link>
                         </p>
                     </div>
