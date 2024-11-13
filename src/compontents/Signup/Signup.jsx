@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
+import { sendEmailVerification, updateProfile } from "firebase/auth";
+import { auth } from "../../firebase.init";
 
 const Signup = () => {
     const {creatUser} =useContext(AuthContext)
@@ -11,13 +13,32 @@ const Signup = () => {
         const password =e.target.password.value;
 
         console.log(name,email,password)
+
+        const profile ={
+            displayName:name
+        }
+        console.log(profile)
+
+
         creatUser(email,password)
         .then(res =>{
             console.log(res.user)
+            sendEmailVerification(auth.currentUser)
+            .then(() =>{
+                console.log('varifacation ')
+            })
+            updateProfile(auth.currentUser,profile)
+            .then(() =>{
+                console.log('updet name')
+            })
+            .catch(error =>{
+                console.log(error.message)
+            })
         })
         .catch(error =>{
             console.log(error.message)
         })
+
     }
     return (
         <div className="hero bg-red-100 min-h-[80vh]">
