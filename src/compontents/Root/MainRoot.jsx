@@ -1,10 +1,11 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import Navber from '../Navber/Navber';
 
 const MainRoot = () => {
     return (
         <div>
-            <h1>this is Home</h1>
+            <Navber></Navber>
             <Outlet></Outlet>
         </div>
     );
