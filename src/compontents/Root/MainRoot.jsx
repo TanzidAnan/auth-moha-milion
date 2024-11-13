@@ -4,7 +4,7 @@ import Navber from '../Navber/Navber';
 
 const MainRoot = () => {
     return (
-        <div>
+        <div className='w-10/12 mx-auto'>
             <Navber></Navber>
             <Outlet></Outlet>
         </div>
