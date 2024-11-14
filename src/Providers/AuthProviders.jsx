@@ -7,15 +7,19 @@ export const AuthContext = createContext(null)
 
 const AuthProviders = ({children}) => {
     const [user,setUser] =useState(null)
+    const [loading,setLoading] =useState(true)
 
     const creatUser =(email,password) =>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password);
 
     }
     const signinUser =(email,password) =>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
     const signOutUser =() =>{
+        setLoading(false)
         return signOut(auth)
     }
 
@@ -23,6 +27,7 @@ const AuthProviders = ({children}) => {
         const unSuscrve =onAuthStateChanged(auth , creatUser=>{
             if(creatUser){
                 setUser(creatUser)
+                setLoading(false)
             }
             else{
                 setUser(null)
@@ -48,6 +53,7 @@ const AuthProviders = ({children}) => {
     const authInfo = {
         user,
         creatUser,
+        loading,
         signinUser,
         signOutUser
     }

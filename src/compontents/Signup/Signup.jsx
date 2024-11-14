@@ -22,7 +22,8 @@ const Signup = () => {
 
         creatUser(email,password)
         .then(res =>{
-            console.log(res.user)
+            console.log(res.user);
+            
             sendEmailVerification(auth.currentUser)
             .then(() =>{
                 console.log('varifacation ')

@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 
 const Login = () => {
     
-    const {signinUser} =useContext(AuthContext)
+    const {signinUser} =useContext(AuthContext);
+    const naveget =useNavigate()
 
     const hendleLogin =(e) =>{
         e.preventDefault();
@@ -15,6 +16,8 @@ const Login = () => {
         signinUser(email,password)
         .then(res =>{
             console.log(res.user)
+            e.target.reset()
+            naveget('/')
         })
         .catch(error =>{
             console.log(error.message)
