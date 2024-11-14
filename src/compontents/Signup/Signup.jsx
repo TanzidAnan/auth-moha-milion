@@ -5,42 +5,43 @@ import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase.init";
 
 const Signup = () => {
-    const {creatUser} =useContext(AuthContext)
-    const hendleResister =(e) =>{
+    const { creatUser, } = useContext(AuthContext)
+    const hendleResister = (e) => {
         e.preventDefault()
-        const name =e.target.name.value;
-        const email =e.target.email.value;
-        const password =e.target.password.value;
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
 
-        console.log(name,email,password)
+        console.log(name, email, password)
 
-        const profile ={
-            displayName:name
+        const profile = {
+            displayName: name
         }
         console.log(profile)
 
 
-        creatUser(email,password)
-        .then(res =>{
-            console.log(res.user);
-            
-            sendEmailVerification(auth.currentUser)
-            .then(() =>{
-                console.log('varifacation ')
+        creatUser(email, password)
+            .then(res => {
+                console.log(res.user);
+
+                sendEmailVerification(auth.currentUser)
+                    .then(() => {
+                        console.log('varifacation ')
+                    })
+                updateProfile(auth.currentUser, profile)
+                    .then(() => {
+                        console.log('updet name')
+                    })
+                    .catch(error => {
+                        console.log(error.message)
+                    })
             })
-            updateProfile(auth.currentUser,profile)
-            .then(() =>{
-                console.log('updet name')
-            })
-            .catch(error =>{
+            .catch(error => {
                 console.log(error.message)
             })
-        })
-        .catch(error =>{
-            console.log(error.message)
-        })
 
     }
+
     return (
         <div className="hero bg-red-100 min-h-[80vh]">
             <div className="hero-content flex-col  w-[100%] ">

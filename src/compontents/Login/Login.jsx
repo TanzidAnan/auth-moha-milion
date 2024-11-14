@@ -4,7 +4,7 @@ import { AuthContext } from '../../Providers/AuthProviders';
 
 const Login = () => {
     
-    const {signinUser} =useContext(AuthContext);
+    const {signinUser,googleLogin} =useContext(AuthContext);
     const naveget =useNavigate()
 
     const hendleLogin =(e) =>{
@@ -25,6 +25,15 @@ const Login = () => {
 
     }
 
+    const hendleGoogleLogin =() =>{
+        googleLogin()
+        .then(res =>{
+            console.log(res.user)
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
+    }
 
     return (
         <div>
@@ -52,6 +61,10 @@ const Login = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
+                            </div>
+                            <div className='flex justify-center gap-5'>
+                                <button onClick={hendleGoogleLogin} className='btn bg-orange-400'>Google</button>
+                                <button className='btn bg-orange-200'>gitHub</button>
                             </div>
                         </form>
                         <p className='my-6 mx-4 text-center'>New to this Website <Link className='text-purple-400' to='/resister'>Resister</Link></p>
