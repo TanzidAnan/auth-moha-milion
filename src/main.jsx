@@ -10,6 +10,8 @@ import Home from './compontents/Home/Home';
 import Login from './compontents/Login/Login';
 import Signup from './compontents/Signup/Signup';
 import AuthProviders from './Providers/AuthProviders';
+import Orbers from './compontents/Orbers/Orbers';
+import PrivateRoutes from './routes/PrivateRoutes';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +27,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/resister',
-        element: <Signup></Signup>
+        element: <Signup></Signup>,
+      },
+      {
+        path:'/orders',
+        element:<PrivateRoutes><Orbers></Orbers></PrivateRoutes>
       }
     ]
   },

@@ -3,22 +3,27 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Navber = () => {
-    const {user,signOutUser} =useContext(AuthContext)
+    const { user, signOutUser } = useContext(AuthContext)
 
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/login'>Login</NavLink></li>
         <li><NavLink to='/resister'>Resister</NavLink></li>
+        {
+            user && <>
+                <li><NavLink to='/orders'>Orders</NavLink></li>
+            </>
+        }
 
     </>
-    const hendleSingOut =() =>{
+    const hendleSingOut = () => {
         signOutUser()
-        .then(res =>{
-            console.log(res.user)
-        })
-        .catch(error =>{
-            console.log(error.message)
-        })
+            .then(res => {
+                console.log(res.user)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
     }
 
 
@@ -44,7 +49,7 @@ const Navber = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                {links}
+                            {links}
                         </ul>
                     </div>
                     <a className="btn btn-ghost text-xl">daisyUI</a>
@@ -57,9 +62,9 @@ const Navber = () => {
                 <div className="navbar-end">
                     {
                         user ? <>
-                        <span>{user?.displayName}</span>
-                        <a onClick={hendleSingOut} className="btn">sign out</a>
-                        </> :<Link className="btn" to='/login'>Login</Link>
+                            <span>{user?.displayName}</span>
+                            <a onClick={hendleSingOut} className="btn">sign out</a>
+                        </> : <Link className="btn" to='/login'>Login</Link>
                     }
                 </div>
             </div>
